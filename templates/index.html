@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Home - MediCare Hospital{% endblock %}
+{% block content %}
+<section class="hero">
+    <div>
+        <p class="eyebrow">WELCOME TO MEDICARE</p>
+        <h1>Book your hospital appointment easily.</h1>
+        <p>Find a doctor, choose a convenient date and time, and manage your appointments in one place.</p>
+        <div class="actions">
+            <a class="btn primary" href="{{ url_for('book') }}">Book Appointment</a>
+            <a class="btn secondary" href="{{ url_for('doctors') }}">View Doctors</a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">OUR DOCTORS</p>
+            <h2>Specialists available</h2>
+        </div>
+        <a href="{{ url_for('doctors') }}">View all →</a>
+    </div>
+
+    <div class="cards">
+        {% for doctor in doctors %}
+        <div class="card">
+            <div class="doctor-icon">DR</div>
+            <h3>{{ doctor.name }}</h3>
+            <p class="specialization">{{ doctor.specialization }}</p>
+            <p>Available: {{ doctor.availability }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<div class="stat">
+    <strong>{{ appointment_count }}</strong>
+    <span>appointments currently booked</span>
+</div>
+{% endblock %}

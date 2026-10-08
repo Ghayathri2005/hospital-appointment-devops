@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Book Appointment - MediCare Hospital{% endblock %}
+{% block content %}
+<div class="form-wrapper">
+    <div class="page-header">
+        <p class="eyebrow">APPOINTMENT</p>
+        <h1>Book an Appointment</h1>
+        <p>Enter your details and select a doctor.</p>
+    </div>
+
+    <form method="POST" class="form-card">
+        <label>Patient Name
+            <input type="text" name="patient_name" placeholder="Enter patient name" required>
+        </label>
+
+        <label>Phone Number
+            <input type="tel" name="phone" placeholder="Enter phone number" required>
+        </label>
+
+        <label>Select Doctor
+            <select name="doctor_id" required>
+                <option value="">-- Select Doctor --</option>
+                {% for doctor in doctors %}
+                <option value="{{ doctor.id }}">{{ doctor.name }} - {{ doctor.specialization }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <label>Appointment Date
+            <input type="date" name="appointment_date" required>
+        </label>
+
+        <label>Appointment Time
+            <select name="appointment_time" required>
+                <option value="">-- Select Time --</option>
+                <option>09:00 AM</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>12:00 PM</option>
+                <option>02:00 PM</option>
+                <option>03:00 PM</option>
+                <option>04:00 PM</option>
+                <option>05:00 PM</option>
+            </select>
+        </label>
+
+        <button class="btn primary full" type="submit">Confirm Appointment</button>
+    </form>
+</div>
+{% endblock %}

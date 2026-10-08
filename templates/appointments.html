@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Appointments - MediCare Hospital{% endblock %}
+{% block content %}
+<div class="page-header">
+    <p class="eyebrow">MANAGE BOOKINGS</p>
+    <h1>Appointments</h1>
+    <p>View and manage booked appointments.</p>
+</div>
+
+{% if appointments %}
+<div class="table-card">
+<table>
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Phone</th>
+            <th>Doctor</th>
+            <th>Specialization</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for a in appointments %}
+        <tr>
+            <td>{{ a.patient_name }}</td>
+            <td>{{ a.phone }}</td>
+            <td>{{ a.doctor_name }}</td>
+            <td>{{ a.specialization }}</td>
+            <td>{{ a.appointment_date }}</td>
+            <td>{{ a.appointment_time }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('cancel', appointment_id=a.id) }}">
+                    <button class="btn danger" type="submit">Cancel</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% else %}
+<div class="empty">
+    <h2>No appointments yet</h2>
+    <p>Book your first appointment to see it here.</p>
+    <a class="btn primary" href="{{ url_for('book') }}">Book Appointment</a>
+</div>
+{% endif %}
+{% endblock %}

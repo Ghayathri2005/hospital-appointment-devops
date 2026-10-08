@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Doctors - MediCare Hospital{% endblock %}
+{% block content %}
+<div class="page-header">
+    <p class="eyebrow">MEDICAL TEAM</p>
+    <h1>Our Doctors</h1>
+    <p>Choose a specialist for your appointment.</p>
+</div>
+
+<div class="cards">
+{% for doctor in doctors %}
+    <div class="card doctor-card">
+        <div class="doctor-icon">DR</div>
+        <h2>{{ doctor.name }}</h2>
+        <p class="specialization">{{ doctor.specialization }}</p>
+        <p><strong>Availability:</strong><br>{{ doctor.availability }}</p>
+        <a class="btn primary full" href="{{ url_for('book') }}">Book with Doctor</a>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
